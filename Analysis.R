@@ -22,3 +22,6 @@ as.factor(merged$Currency)
 #creating a new column where prices in Zloty are converted and prices in USD are not
 converted <- mutate(merged, Converted = ifelse(merged$Currency=="$", (merged$Price), (merged$Price/merged[,2])))
 
+
+# ------------------- Analysis -------------------------------
+
