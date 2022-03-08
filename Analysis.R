@@ -1,5 +1,3 @@
-
-setwd("~/Documents/Tarantula Project")
 library(priceR)
 library(dplyr)
 
@@ -18,7 +16,9 @@ cur$Date <- as.Date(cur$Date, format = "%Y.%m.%d")
 Tarantula$Date <- as.Date(Tarantula$Date)
 
 #merging the two datasets together for rows where they share a date
-merged <- right_join(cur, Tarantula, by = "Date") 
+merged <- right_join(cur, Tarantula, by = "Date")
+as.factor(merged$Currency)
 
-
+#creating a new column where prices in Zloty are converted and prices in USD are not
+converted <- mutate(merged, Converted = ifelse(merged$Currency=="$", (merged$Price), (merged$Price/merged[,2])))
 
